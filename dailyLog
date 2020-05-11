@@ -1,4 +1,4 @@
-## Day 1:
+##Day 1:
 Today I am starting with a mini-project which involves providing a Data solution to a fictional music streaming startup (Sparkify), which is looking for cost-effective ways to store their OLAP tables for their analytics team to work on.
 
 Sparkify, has grown their user base, song database and want to move their data existing warehouse to a data lake. The objective of the project is to build a ETL pipeline that does the following tasks.
