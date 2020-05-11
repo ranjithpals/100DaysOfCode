@@ -1,4 +1,4 @@
-## <b>Day 1:</b>
+## Project 1:
 Today I am starting with a mini-project which involves providing a Data solution to a fictional music streaming startup (Sparkify), which is looking for cost-effective ways to store their OLAP tables for their analytics team to work on.
 
 Sparkify, has grown their user base, song database and want to move their data existing warehouse to a data lake. The objective of the project is to build a ETL pipeline that does the following tasks.
@@ -8,3 +8,8 @@ Sparkify, has grown their user base, song database and want to move their data e
 	3. Store the data in staging tables on multi-node Datawarehouse (Amazon Redshift Cluster)
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
+
+## Day 1:
+1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
+2. Created a configuration file to capture the following credentials
+> a. 
