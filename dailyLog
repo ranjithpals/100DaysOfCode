@@ -11,5 +11,12 @@ Sparkify, has grown their user base, song database and want to move their data e
 
 ## Day 1:
 1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
-2. Created a configuration file to capture the following credentials
-> a. 
+2. Created a configuration file to capture the following credentials.
+   a. User access key id, secret key (AWS)
+   b. Redshift Cluster configuration and end points (AWS DWH)
+   c. Database credentials (DWH DB)
+   d. Raw data files in S3 bucket (Location)
+3. Created a Spark session (Local cluster)
+4. Read the configuration details from the Config file.
+4. Read the song data, user log data as JSON files from S3 bucket into a Spark DataFrame.
+5. View the data in the DataFrame.
