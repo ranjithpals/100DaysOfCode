@@ -28,5 +28,3 @@ Sparkify, has grown their user base, song database and want to move their data e
 	b. artists table.
 3. Create a S3 Bucket for a given region (default east) to store the dimension tables.
 4. Save the songs table in Parquet format in S3 bucket.
-4. 
-3. 
