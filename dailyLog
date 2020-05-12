@@ -20,3 +20,13 @@ Sparkify, has grown their user base, song database and want to move their data e
 4. Read the configuration details from the Config file.
 4. Read the song data, user log data as JSON files from S3 bucket into a Spark DataFrame.
 5. View the data in the DataFrame.
+
+## Day 2:
+1. Create Boto3 (Python API for Amazon) clients for EC2, S3, IAM, and RedShift.
+2. Filter the columns from the songs data dataframe needed to create the tables.
+	a. songs table.
+	b. artists table.
+3. Create a S3 Bucket for a given region (default east) to store the dimension tables.
+4. Save the songs table in Parquet format in S3 bucket.
+4. 
+3. 
