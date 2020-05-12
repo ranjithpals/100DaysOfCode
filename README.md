@@ -1,6 +1,8 @@
 # 100DaysOfCode
 100 Days of Coding Challenge
 
+Daily Log: https://github.com/ranjithpals/100DaysOfCode/blob/master/dailyLog
+
 Starting today I have decided to start with #100DaysOfCode
 challenge which I believe would be my first step as I embark on my journey into Data Engineering and Data Science. I am taking this challenge for the following important reasons.
 
