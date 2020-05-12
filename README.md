@@ -3,7 +3,7 @@
 
 Daily Log: https://github.com/ranjithpals/100DaysOfCode/blob/master/dailyLog
 
-Starting today I have decided to start with #100DaysOfCode
+[05.11.2020] I have decided to start with #100DaysOfCode
 challenge which I believe would be my first step as I embark on my journey into Data Engineering and Data Science. I am taking this challenge for the following important reasons.
 
 ### Habit - By committing to this challenge I want to make coding a habit which will bring about a change to my life as any habit would do.
