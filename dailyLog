@@ -27,4 +27,9 @@ Sparkify, has grown their user base, song database and want to move their data e
 	a. songs table.
 	b. artists table.
 3. Create a S3 Bucket for a given region (default east) to store the dimension tables.
-4. Save the songs table in Parquet format in S3 bucket.
+
+## Day 3:
+1. Filter the columns from the users log data dataframe needed to create the users tables.
+2. Filter the timestamp field from the user log data.
+	a. Created a UDF to extract the hour from the epoch timestamp.
+3. Save the songs table in Parquet format in S3 bucket, facing issues doing so.
