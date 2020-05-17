@@ -31,7 +31,11 @@ os.environ['AWS_SECRET_ACCESS_KEY']= config['AWS']['AWS_SECRET_ACCESS_KEY']
 KEY= config['AWS']['AWS_ACCESS_KEY_ID']
 SECRET= config['AWS']['AWS_SECRET_ACCESS_KEY']
 
-
+"""
+The function to create a Spark session.
+Returns:
+    Return the spark session
+"""
 def create_spark_session():
     spark = SparkSession \
         .builder \
@@ -39,7 +43,15 @@ def create_spark_session():
         .getOrCreate()
     return spark
 
-
+"""
+The function to process songs data and store the output dimension tables.
+Parameters:
+    1. spark: Spark Session.
+    2. input_data: S3 location containing the songs and log data.
+    3. output_data: S3 location for saving the dimension tables in parquet format.
+Returns:
+    No function return
+"""
 def process_song_data(spark, input_data, output_data):
     # get filepath to song data file
     song_data = input_data + "song_data/A/A/*/*.json"
@@ -51,15 +63,23 @@ def process_song_data(spark, input_data, output_data):
     songs_table = df.select(["song_id", "title", "artist_id", "year", "duration"]).dropDuplicates()
     
     # write songs table to parquet files partitioned by year and artist
-    songs_table.write.mode('overwrite').parquet('Output/songs_table')
+    songs_table.write.mode('overwrite').partitionBy('year', 'artist_id').parquet('s3a://desh1gvrk/parquet/songs')
 
     # extract columns to create artists table
     artists_table = df.select(["artist_id", "artist_name", "artist_location", "artist_latitude", "artist_longitude"]).dropDuplicates()
     
     # write artists table to parquet files
-    artists_table.write.mode('overwrite').parquet('Output/artists_table')
+    artists_table.write.mode('overwrite').parquet('s3a://desh1gvrk/parquet/artists')
 
-
+"""
+The function to process log data and store the output dimension and fact tables.
+Parameters:
+    1. spark: Spark Session.
+    2. input_data: S3 location containing the songs and log data.
+    3. output_data: S3 location for saving the fact and dimension tables in parquet format.
+Returns:
+    No function return
+"""
 def process_log_data(spark, input_data, output_data):
     # get filepath to log data file
     log_data = input_data + "log_data/2018/*/*.json"
@@ -74,7 +94,7 @@ def process_log_data(spark, input_data, output_data):
     users_table = df.select(['userId', 'firstName', 'lastName', 'gender', 'level']).dropDuplicates()
     
     # write users table to parquet files
-    users_table.write.mode('overwrite').parquet('Output/users_table')
+    users_table.write.mode('overwrite').parquet('s3a://desh1gvrk/parquet/users')
 
     # create timestamp column from original timestamp column
     get_timestamp = udf(lambda x: datetime.fromtimestamp(x/1000.0),TimestampType())
@@ -94,7 +114,7 @@ def process_log_data(spark, input_data, output_data):
                         date_format(df.datetime, 'E').alias('weekday')).dropDuplicates()
     
     # write time table to parquet files partitioned by year and month
-    time_table.write.mode('overwrite').parquet('Output/time_table')
+    time_table.write.mode('overwrite').partitionBy('year', 'month').parquet('s3a://desh1gvrk/parquet/time')
 
     # read in song data to use for songplays table
     song_data = input_data + "song_data/A/A/*/*.json"
@@ -104,14 +124,17 @@ def process_log_data(spark, input_data, output_data):
     songplays = df.join(song_df,
             (df.song == song_df.title) & (df.artist == song_df.artist_name) & (df.length == song_df.duration), how='left')
     
-    songplays_table = songplays.select(df.ts.alias('start_time'), f.year(df.datetime).alias('year'), df.userId.alias('user_id'), df.level, song_df.song_id,
-                        song_df.artist_id, df.sessionId.alias('session_id'), df.location, 
-                        df.userAgent.alias('user_agent'))
+    songplays_table = songplays.select(df.ts.alias('start_time'), f.year(df.datetime).alias('year'), f.month(df.datetime).alias('month'), 
+                                       df.userId.alias('user_id'), df.level, song_df.song_id, song_df.artist_id, df.sessionId.alias('session_id'), df.location, 
+                                       df.userAgent.alias('user_agent'))
 
     # write songplays table to parquet files partitioned by year and month
-    songplays_table.write.mode('overwrite').partitionBy('artist_id', 'song_id').parquet('Output/songplays_table')
+    songplays_table.write.mode('overwrite').partitionBy('year', 'month').parquet('s3a://desh1gvrk/parquet/songplays')
 
-
+"""
+The main function to trigger the ETL pipeline process.
+Execute the process_song_data, process_log_data functions.
+"""
 def main():
     spark = create_spark_session()
     input_data = config['S3']['INPUT_DATA']
