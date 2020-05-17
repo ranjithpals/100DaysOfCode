@@ -9,6 +9,9 @@ Sparkify, has grown their user base, song database and want to move their data e
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
 
+## Day 7:
+1. Convert the Jupyter notebook solution to modular solution by writing it to a python file (.py) file.
+
 ## Day 6:
 1. Create Fact table in the star schema with the following dimension tables (songs, artists, users and time_table)
 2. Save all the dimension and fact tables in Parquet format in the local disk (I am facing issues for the past few days to store the distributed files directly in S3)
