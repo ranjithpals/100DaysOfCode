@@ -9,6 +9,29 @@ Sparkify, has grown their user base, song database and want to move their data e
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
 
+## Day 11:
+1. Created a architecture diagram for the project using draw.io.
+
+## Day 10:
+1. Not able to make much progress I faced multiple issues when trying to read the complete songs dataset from S3 bucket,
+   and save the songs dimension table in S3 bucket. Will continue to make progress tomorrow.
+
+## Day 09:
+Read the output files from the star schema.
+Performed data validation.
+- Validated if the total number of records match between the log data and fact table
+- Validated the records for a given year and month (songplays fact table partition) to the log data.
+
+## Day 08:
+After facing issues in saving parquet files on to S3 bucket, today I was able to resolve it!! The solution was to create the S3 bucket in the same region as the Cluster.
+
+Today I started using a very useful feature in GitHub to create projects and associate a Kanban board to manage and track tasks/stories to work on daily. I will be using it to complete the remaining tasks in my project.
+
+Created a Amazon EMR cluster.
+Created a S3 bucket in the same region as the EMR cluster.
+Modified the Jupyter notebook to run the program on EMR cluster.
+Validated the parquet files were created in S3 bucket with partitions.
+
 ## Day 7:
 1. Convert the Jupyter notebook solution to modular solution by writing it to a python file (.py) file.
 
