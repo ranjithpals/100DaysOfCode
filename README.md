@@ -3,8 +3,7 @@
 
 ### Daily Log: https://github.com/ranjithpals/100DaysOfCode/blob/master/dailyLog
 
-![Data Lake Architecture](Architecture.jpg)
-Data Lake using AWS
+![Data Lake Architecture using AWS](Architecture.jpg)
 
 [05.11.2020] I have decided to start with #100DaysOfCode
 challenge which I believe would be my first step as I embark on my journey into Data Engineering and Data Science. I am taking this challenge for the following important reasons.
