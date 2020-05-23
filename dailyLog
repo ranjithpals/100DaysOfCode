@@ -9,8 +9,13 @@ Sparkify, has grown their user base, song database and want to move their data e
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
 
-## Day 11:
-1. Created a architecture diagram for the project using draw.io.
+
+## Day 13:
+1. Created a ERD diagram for the Datalake.
+
+## Day 12:
+1. Tried to run the etl pipeline pyspark script (.py) file from Amazon Systems Manager which is used to submit hadoop/spark jobs
+securely without using SSH on Amazon EMR cluster using the Amazon Console.
 
 ## Day 10:
 1. Not able to make much progress I faced multiple issues when trying to read the complete songs dataset from S3 bucket,
