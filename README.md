@@ -4,6 +4,7 @@
 ### Daily Log: https://github.com/ranjithpals/100DaysOfCode/blob/master/dailyLog
 
 ![Data Lake Architecture using AWS](Architecture.jpg)
+
 ![Data Lake Schema](Sparkifydb.png)
 
 [05.11.2020] I have decided to start with #100DaysOfCode
