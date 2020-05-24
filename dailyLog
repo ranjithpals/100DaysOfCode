@@ -9,6 +9,10 @@ Sparkify, has grown their user base, song database and want to move their data e
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
 
+## Day 14:
+- Validated the artist (table) attributes of a unique log data record.
+- Validated the users (table) attributes of a unique log data record.
+- Validated the song (table) attributes of a unique log data record.
 
 ## Day 13:
 1. Created a ERD diagram for the Datalake.
