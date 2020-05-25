@@ -8,6 +8,13 @@ Sparkify, has grown their user base, song database and want to move their data e
 	3. Store the data in staging tables on multi-node Datawarehouse (Amazon Redshift Cluster)
 	4. Convert the data into dimension tables (Star schema)
 	5. Store the data back to a Data lake (Amazon S3)
+	
+## Day 15:
+1. Move the ETL script (ETL.py) and config file using FTP client from local PC to Spark Cluster's master node.
+2. Use open-source terminal emulator to login to the master node using SSH.
+3. Install the required python libraries (configparser, pandas) using linux commands.
+4. Execute the ETL python script in the EMR cluster from CLI.
+5. View the status of the Spark Jobs using the Spark History Server UI.
 
 ## Day 14:
 - Validated the artist (table) attributes of a unique log data record.
