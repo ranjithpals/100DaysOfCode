@@ -87,17 +87,17 @@ Created the following **DIMENSION** tables
 </ol>
 
 ### Deployment Setup (Production)
-1. Created a Amazon EMR cluster with Master Node and 3 Slave nodes.
-2. Validated the connection to EMR cluster using Putty.
-3. Validated the connection to Input S3 bucket.
-4. Validated the connection to Output S3 bucket in the same region as the EMR cluster.
-5. Modified the Jupyter notebook to .py file to execute the ETL on the EMR (Spark Cluster) cluster.
-6. Move the python file and configuration file from local workstation to EMR cluster using WinSCP. 
-7. Validated the parquet files created in S3 bucket with partitions.
+> 1. Created a Amazon EMR cluster with Master Node and 3 Slave nodes.
+> 2. Validated the connection to EMR cluster using Putty.
+> 3. Validated the connection to Input S3 bucket.
+> 4. Validated the connection to Output S3 bucket in the same region as the EMR cluster.
+> 5. Modified the Jupyter notebook to .py file to execute the ETL on the EMR (Spark Cluster) cluster.
+> 6. Move the python file and configuration file from local workstation to EMR cluster using WinSCP. 
+> 7. Validated the parquet files created in S3 bucket with partitions.
 
 ### Convert Jupter Note Book Code into Modular Python code (.py) file
-1. Convert the Python Scripts from the web kernel to modular Python code (.py) file.
-2. Create common functions to perform the database and ETL functions.
+> 1. Convert the Python Scripts from the web kernel to modular Python code (.py) file.
+> 2. Create common functions to perform the database and ETL functions.
 
 ### ETL Validation
 <ol>
