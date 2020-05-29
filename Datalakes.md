@@ -1,7 +1,7 @@
-# Data-Modeling-with-Postgres
-(Udacity: Data Engineering Nano Degree) | learngvrk@gmail.com | 2019-12-23 This project is a part of Udacity's Data Engineer Nano Degree.
+# Data-Lake-on-S3 using Spark EMR Cluster
+(Udacity: Data Engineering Nano Degree) | learngvrk@gmail.com | 2020-05-23 This project is a part of Udacity's Data Engineer Nano Degree.
 
-## Project 1 - Data Modeling with Postgres
+## Project 3 - Data-Lake-on-S3 using Spark EMR Cluster
 
 ![MUSIC DATA ANALYTICS](Music_App_Analytics.jpg)
 
@@ -11,6 +11,12 @@ Courtesy: Adobe Stock Images
 The startup Sparkify was interested to analyze the data collected from the user activity on their music app on the mobile phones.
 
 Based on the user activity the startup would like to perform some analytics to derive insights which will help the organization to better understand the user behavior, and so add more interesting features to their mobile app which would enhance the user experience and stratergize the product development roadmap.
+
+### Problem Statement:
+Sparkify, has grown its user base, song database and are finding it very expensive to maintain a 24x7 EMR (EC2 based) cluster with HDFS to move their data existing warehouse to a data lake and is looking to cut costs.
+
+### Proposed Solution:
+The proposed solution is to build a ETL pipeline that extracts their data from S3, processes them using Spark, and loads the data back into S3 (Data Lake) as a set of dimensional tables. This will allow their analytics team to continue finding insights in what songs their users are listening to.
 
 ### Database Schema
 
