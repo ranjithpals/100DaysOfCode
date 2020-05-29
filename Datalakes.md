@@ -18,6 +18,14 @@ Sparkify, has grown its user base, song database and are finding it very expensi
 ### Proposed Solution:
 The proposed solution is to build a ETL pipeline that extracts their data from S3, processes them using Spark, and loads the data back into S3 (Data Lake) as a set of dimensional tables. This will allow their analytics team to continue finding insights in what songs their users are listening to.
 
+### High Level Design
+	1. Read song and user log data (files) from the existing staging area (Amazon S3)
+	2. Process the data using Spark (local or EMR cluster)
+	3. Convert the data into dimension tables (Star schema)
+	4. Store the data back to a Data lake (Amazon S3)
+  
+![ETL using AWS Services](Architecture.jpg)
+
 ### Database Schema
 
 - The database schema the team has come up with the following **STAR-SCHEMA** which captures all the important dimensions needed to create the fact table.
