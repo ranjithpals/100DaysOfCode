@@ -28,7 +28,7 @@ The proposed solution is to build a ETL pipeline that extracts their data from S
 
 ### Database Schema
 
-- The database schema the team has come up with the following **STAR-SCHEMA** which captures all the important dimensions needed to create the fact table.
+- The modeling team has come up with the following **STAR-SCHEMA** which captures all the important dimensions needed to create the fact table.
 - Artists, Users, Songs, Time are the most quintessential dimensions needed to build the fact table, which is then used to derive insights.
 - **FACT TABLE:** contains the required dimensions to categorize and their measures (build aggregations) to derive facts, which enables analyze the user behavior.
 
@@ -42,7 +42,7 @@ The proposed solution is to build a ETL pipeline that extracts their data from S
 ### Create Dimension Tables
 Created the following **DIMENSION** tables
 > 1. Users: user info (columns: user_id, first_name, last_name, gender, level)
-> 2. Songs: song info (columns: song_id, title, artist_id, year, duration)
+> 2. Songs: song info (columns: song_id, title, artist_id, year, duration [Partition Key: year, artist_id])
 > 3. Artists: artist info (columns: artist_id, name, location, latitude, longitude)
 > 4. Time: detailed time info about song plays (columns: start_time, hour, day, week, month, year, weekday)
 
