@@ -54,7 +54,7 @@ Created the following **DIMENSION** tables
 ### Create the FACT table: 
 > songplays: song play data together with user, artist, and song info (songplay_id, start_time, year, month, user_id, level, song_id, artist_id, session_id, location, user_agent [Partition Key: year, month])
 
-### Environment Setup
+### Environment Setup (Development)
 1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
 2. Created a configuration file to capture the following credentials.
    a. User access key id, secret key (AWS)
@@ -63,18 +63,17 @@ Created the following **DIMENSION** tables
 3. Created a Spark session (Local cluster)
 4. Read the configuration details from the Config file.
 5. Read the Input data (song data, user log data) as JSON files from S3 bucket into a Spark DataFrame.
-6. View the data exists in the DataFrame.
-7. Transform the Input data into Dimension tables (songs, artists, users and time) with partition keys to 
-8. Convert the DataFrame(s) into Parquet files (columnar format) 
-9. Create the Fact Table DataFrame based on the 3NF and required partition keys (for faster and efficient data reads).
-10. 
-
-### SQL Queries
-<ol>
-  <li> Establish connection to the local instance of the Postgres DB.</li>
-  <li> Create CREATE TABLE statements to Create Dimension and Fact tables.</li>
-  <li> Create INSERT INTO TABLE statements to enter the songs and log data into the Dimension and Fact table.</li>
-</ol>
+6. Viewed the data exists in the DataFrame.
+7. Transformed the Input data into Dimension tables (songs, artists, users and time) with partition keys
+8. Created UDF for converting Epoch Time to extract the following
+   a. hour
+   b. day
+   c. week
+   d. month
+   e. year
+9. Created S3 buckets in the same region (us-west-2) as the Input S3 bucket.
+10. Convert the DataFrame(s) into Parquet files (columnar format) 
+11. Create the Fact Table DataFrame based on the 3NF and required partition keys (for faster and efficient data reads).
 
 ### Perform ETL
 <ol>
@@ -87,10 +86,27 @@ Created the following **DIMENSION** tables
 <li> Extract the log data, and data from dimension tables to fill in the **SONGPLAYS** FACT table.</li>
 </ol>
 
+### Deployment Setup (Production)
+1. Created a Amazon EMR cluster with Master Node and 3 Slave nodes.
+2. Validated the connection to EMR cluster using Putty.
+3. Validated the connection to Input S3 bucket.
+4. Validated the connection to Output S3 bucket in the same region as the EMR cluster.
+5. Modified the Jupyter notebook to .py file to execute the ETL on the EMR (Spark Cluster) cluster.
+6. Move the python file and configuration file from local workstation to EMR cluster using WinSCP. 
+7. Validated the parquet files created in S3 bucket with partitions.
+
 ### Convert Jupter Note Book Code into Modular Python code (.py) file
 1. Convert the Python Scripts from the web kernel to modular Python code (.py) file.
 2. Create common functions to perform the database and ETL functions.
 
+### ETL Validation
+<ol>
+  <li> Validated the total number of records match between the log data and fact table. </li>
+  <li> Validate the records for a given year and month (songplays fact table partition) to the log data.</li>
+  <li> Validated the artist attributes of a unique log data record.</li>
+  <li> Validate the users attributes of a unique log data record.</li>
+  <li> Validate the song attributes of a unique log data record.</li>
+</ol>
 
 ### Sample Queries which can be used for Analytics
 - For a given user what is his favorite songs (most played ones)
