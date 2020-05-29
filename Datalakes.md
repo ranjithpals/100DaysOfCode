@@ -2,7 +2,7 @@
 (Udacity: Data Engineering Nano Degree) | learngvrk@gmail.com | 2020-05-23 This project is a part of Udacity's Data Engineer Nano Degree.
 
 ## Project 3 - Data-Lake-on-S3 using Spark EMR Cluster
-
+ 
 ![MUSIC DATA ANALYTICS](Music_App_Analytics.jpg)
 
 Courtesy: Adobe Stock Images
