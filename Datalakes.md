@@ -44,7 +44,7 @@ Created the following **DIMENSION** tables
 > 1. Users: user info (columns: user_id, first_name, last_name, gender, level)
 > 2. Songs: song info (columns: song_id, title, artist_id, year, duration [Partition Key: year, artist_id])
 > 3. Artists: artist info (columns: artist_id, name, location, latitude, longitude)
-> 4. Time: detailed time info about song plays (columns: start_time, hour, day, week, month, year, weekday)
+> 4. Time: detailed time info about song plays (columns: start_time, hour, day, week, month, year, weekday [Partition Key: year, month])
 
 ### Perform Denormalization
 > 1. Ensured the Fact tables have all the primary keys of the Dimension tables.
@@ -52,7 +52,22 @@ Created the following **DIMENSION** tables
 > 3. All the required measures can be calculated using the aggregation function performed on the categories (data).
 
 ### Create the FACT table: 
-> songplays: song play data together with user, artist, and song info (songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
+> songplays: song play data together with user, artist, and song info (songplay_id, start_time, year, month, user_id, level, song_id, artist_id, session_id, location, user_agent [Partition Key: year, month])
+
+### Environment Setup
+1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
+2. Created a configuration file to capture the following credentials.
+   a. User access key id, secret key (AWS)
+   b. Raw data files in S3 bucket (Location)
+   c. Output data files in S3 (Location)
+3. Created a Spark session (Local cluster)
+4. Read the configuration details from the Config file.
+5. Read the Input data (song data, user log data) as JSON files from S3 bucket into a Spark DataFrame.
+6. View the data exists in the DataFrame.
+7. Transform the Input data into Dimension tables (songs, artists, users and time) with partition keys to 
+8. Convert the DataFrame(s) into Parquet files (columnar format) 
+9. Create the Fact Table DataFrame based on the 3NF and required partition keys (for faster and efficient data reads).
+10. 
 
 ### SQL Queries
 <ol>
