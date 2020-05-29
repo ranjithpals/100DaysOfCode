@@ -55,25 +55,25 @@ Created the following **DIMENSION** tables
 > songplays: song play data together with user, artist, and song info (songplay_id, start_time, year, month, user_id, level, song_id, artist_id, session_id, location, user_agent [Partition Key: year, month])
 
 ### Environment Setup (Development)
-1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
-2. Created a configuration file to capture the following credentials.
+> 1. Created a Jupyter Notebook to check if the basic connections of the pipeline can be created.
+> 2. Created a configuration file to capture the following credentials.
    a. User access key id, secret key (AWS)
    b. Raw data files in S3 bucket (Location)
    c. Output data files in S3 (Location)
-3. Created a Spark session (Local cluster)
-4. Read the configuration details from the Config file.
-5. Read the Input data (song data, user log data) as JSON files from S3 bucket into a Spark DataFrame.
-6. Viewed the data exists in the DataFrame.
-7. Transformed the Input data into Dimension tables (songs, artists, users and time) with partition keys
-8. Created UDF for converting Epoch Time to extract the following
+> 3. Created a Spark session (Local cluster)
+> 4. Read the configuration details from the Config file.
+> 5. Read the Input data (song data, user log data) as JSON files from S3 bucket into a Spark DataFrame.
+> 6. Viewed the data exists in the DataFrame.
+> 7. Transformed the Input data into Dimension tables (songs, artists, users and time) with partition keys
+> 8. Created UDF for converting Epoch Time to extract the following
    a. hour
    b. day
    c. week
    d. month
    e. year
-9. Created S3 buckets in the same region (us-west-2) as the Input S3 bucket.
-10. Convert the DataFrame(s) into Parquet files (columnar format) 
-11. Create the Fact Table DataFrame based on the 3NF and required partition keys (for faster and efficient data reads).
+> 9. Created S3 buckets in the same region (us-west-2) as the Input S3 bucket.
+> 10. Convert the DataFrame(s) into Parquet files (columnar format) 
+> 11. Create the Fact Table DataFrame based on the 3NF and required partition keys (for faster and efficient data reads).
 
 ### Perform ETL
 <ol>
