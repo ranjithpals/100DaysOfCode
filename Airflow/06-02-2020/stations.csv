@@ -1,0 +1,11 @@
+id,name,city,latitude,longitude,dpcapacity,online_date
+2,Buckingham Fountain,Chicago,41.876393,-87.620328,27,2013-06-10 10:43:00.000000
+3,Shedd Aquarium,Chicago,41.867225,-87.615355,55,2013-06-10 10:44:00.000000
+4,Burnham Harbor,Chicago,41.856268,-87.613348,23,2013-06-10 10:46:00.000000
+5,State St & Harrison St,Chicago,41.874053,-87.627716,23,2013-06-10 10:46:00.000000
+6,Dusable Harbor,Chicago,41.885040,-87.612794,39,2013-06-10 11:18:00.000000
+7,Field Blvd & South Water St,Chicago,41.886349,-87.617516,19,2013-06-19 10:00:00.000000
+9,Leavitt St & Archer Ave,Chicago,41.828792,-87.680604,19,2013-06-21 09:33:00.000000
+11,Jeffery Blvd & 71st St,Chicago,41.766638,-87.576450,11,2013-06-21 09:39:00.000000
+12,South Shore Dr & 71st St,Chicago,41.766409,-87.565687,15,2013-06-21 10:00:00.000000
+13,Wilton Ave & Diversey Pkwy,Chicago,41.932418,-87.652705,27,2013-06-22 18:29:00.000000

@@ -1,0 +1,11 @@
+trip_id,start_time,end_time,bikeid,tripduration,from_station_id,from_station_name,to_station_id,to_station_name,usertype,gender,birthyear
+17536708,2018-01-01 00:57:26.000000,2018-01-01 01:02:40.000000,1169,314.00,164,Franklin St & Lake St,174,Canal St & Madison St,Subscriber,Male,1998
+17536733,2018-01-01 02:15:22.000000,2018-01-01 02:19:45.000000,2342,263.00,110,Dearborn St & Erie St,142,McClurg Ct & Erie St,Subscriber,Male,1985
+17536744,2018-01-01 04:39:48.000000,2018-01-01 04:48:03.000000,6264,495.00,247,Shore Dr & 55th St,418,Ellis Ave & 53rd St,Subscriber,Male,1993
+17536753,2018-01-01 07:17:53.000000,2018-01-01 07:26:58.000000,6373,545.00,74,Kingsbury St & Erie St,26,McClurg Ct & Illinois St,Subscriber,Male,1972
+17536766,2018-01-01 09:02:09.000000,2018-01-01 09:19:17.000000,782,1028.00,44,State St & Randolph St,224,Halsted St & Willow St,Subscriber,Female,1991
+17536769,2018-01-01 09:07:54.000000,2018-01-01 09:27:18.000000,5808,1164.00,374,Western Ave & Walton St,163,Damen Ave & Clybourn Ave,Subscriber,Male,1992
+17536787,2018-01-01 10:34:16.000000,2018-01-01 10:37:27.000000,642,191.00,16,Paulina Ave & North Ave,58,Marshfield Ave & Cortland St,Subscriber,Male,1992
+17536789,2018-01-01 10:38:00.000000,2018-01-01 10:49:35.000000,73,695.00,297,Paulina St & Montrose Ave,239,Western Ave & Leland Ave,Subscriber,Female,1989
+17536799,2018-01-01 11:00:23.000000,2018-01-01 11:06:37.000000,5340,374.00,303,Broadway & Cornelia Ave,300,Broadway & Barry Ave,Subscriber,Female,1976
+17536845,2018-01-01 11:58:08.000000,2018-01-01 12:05:42.000000,1419,454.00,59,Wabash Ave & Roosevelt Rd,57,Clinton St & Roosevelt Rd,Subscriber,Male,1990
