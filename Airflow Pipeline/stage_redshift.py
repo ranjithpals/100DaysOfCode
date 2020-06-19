@@ -20,7 +20,7 @@ class StageToRedshiftOperator(BaseOperator):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
         # Map params here
-        self.redshift_conn_id = conn_id,
+        self.redshift_conn_id = redshift_conn_id,
         self.aws_credentials_id = aws_credentials_id,
         self.table = table,
         self.s3_bucket = s3_bucket,
@@ -48,6 +48,8 @@ class StageToRedshiftOperator(BaseOperator):
                           IGNOREHEADER {}".format(self.table, s3_path, credentials.access_key, credentials.secret_key, self.delimiter, self.ignore_headers)
         
         postgres_hook.run(formatted_sql)
+        
+        pass
         
         
 
