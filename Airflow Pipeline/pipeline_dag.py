@@ -10,11 +10,11 @@ from helpers import SqlQueries
 # AWS_SECRET = os.environ.get('AWS_SECRET')
 
 default_args = {
-    'owner': 'udacity',
+    'owner': 'ranjith',
     'start_date': datetime(2019, 1, 12),
 }
 
-dag = DAG('udac_example_dag',
+dag = DAG('data_pipeline_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
           schedule_interval='0 * * * *'
@@ -49,17 +49,26 @@ load_songplays_table = LoadFactOperator(
 
 load_user_dimension_table = LoadDimensionOperator(
     task_id='Load_user_dim_table',
-    dag=dag
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.user_table_insert,
+    table = 'users',
 )
 
 load_song_dimension_table = LoadDimensionOperator(
     task_id='Load_song_dim_table',
-    dag=dag
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.song_table_insert,
+    table = 'songs',
 )
 
 load_artist_dimension_table = LoadDimensionOperator(
     task_id='Load_artist_dim_table',
-    dag=dag
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.artist_table_insert,
+    table = 'artists',
 )
 
 load_time_dimension_table = LoadDimensionOperator(
