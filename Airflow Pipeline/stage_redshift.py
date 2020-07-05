@@ -10,9 +10,7 @@ class StageToRedshiftOperator(BaseOperator):
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        IGNOREHEADER {}
         FORMAT AS JSON '{}'
-        TIMEFORMAT AS 'epochmillisecs'
         region 'us-west-2'
     """
     ui_color = '#358140'
@@ -27,6 +25,7 @@ class StageToRedshiftOperator(BaseOperator):
                  s3_key="",
                  delimiter=",",
                  ignore_headers=1,
+                 autocommit=True,
                  *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
@@ -38,6 +37,7 @@ class StageToRedshiftOperator(BaseOperator):
         self.s3_key = s3_key
         self.delimiter = delimiter
         self.ignore_headers = ignore_headers
+        self.autocommit = autocommit
 
     def execute(self, context):
         # self.log.info('StageToRedshiftOperator not implemented yet')
@@ -53,18 +53,18 @@ class StageToRedshiftOperator(BaseOperator):
         rendered_key = self.s3_key.format(**context)
         self.log.info(rendered_key)
         s3_path = "s3://{}/{}".format(self.s3_bucket, rendered_key)
+        #s3_path = "s3://udacity-dend/song_data/A/A/A"
         formatted_sql = StageToRedshiftOperator.copy_sql.format(
             self.table, 
             s3_path, 
             credentials.access_key, 
             credentials.secret_key, 
-            self.ignore_headers,
-            'auto',
+            'auto'
         )
         
-        postgres_hook.run(formatted_sql)
+        postgres_hook.run(formatted_sql, self.autocommit)
         
-        
+        self.log.info("Data Copy Complete")
 
 
 

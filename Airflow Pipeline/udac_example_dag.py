@@ -11,7 +11,7 @@ from helpers import SqlQueries
 
 default_args = {
     'owner': 'ranjith',
-    'start_date': datetime(2020, 7, 3)
+    'start_date': datetime(2020, 7, 5)
 }
 
 dag = DAG('data_pipeline_dag',
@@ -21,7 +21,6 @@ dag = DAG('data_pipeline_dag',
         )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
-
 
 stage_events_to_redshift = StageToRedshiftOperator(
     task_id='Stage_events',
