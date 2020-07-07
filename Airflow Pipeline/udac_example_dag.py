@@ -11,7 +11,7 @@ from helpers import SqlQueries
 
 default_args = {
     'owner': 'ranjith',
-    'start_date': datetime(2020, 7, 5)
+    'start_date': datetime(2020, 7, 6)
 }
 
 dag = DAG('data_pipeline_dag',
@@ -30,6 +30,7 @@ stage_events_to_redshift = StageToRedshiftOperator(
     table = "staging_events",
     s3_bucket = "udacity-dend",
     s3_key = "log_data",
+    json_path = "s3://udacity-dend/log_json_path.json"
 )
 
 stage_songs_to_redshift = StageToRedshiftOperator(
@@ -40,9 +41,19 @@ stage_songs_to_redshift = StageToRedshiftOperator(
     table = "staging_songs",
     s3_bucket = "udacity-dend",
     s3_key = "song_data",
+    json_path = "auto"
 )
 
+#load_user_dimension_table = LoadDimensionOperator(
+#    task_id='Load_user_dim_table',
+#    dag=dag,
+#    redshift_conn_id = 'redshift',
+#    load_dimension_table_sql = SqlQueries.user_table_insert,
+#    table = 'users',
+#)
 
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-start_operator >> stage_events_to_redshift >> stage_songs_to_redshift >> end_operator
+#start_operator >> stage_events_to_redshift >> stage_songs_to_redshift >> end_operator
+
+start_operator >> load_user_dimension_table >> end_operator

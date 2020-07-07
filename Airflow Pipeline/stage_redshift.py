@@ -23,6 +23,7 @@ class StageToRedshiftOperator(BaseOperator):
                  table="",
                  s3_bucket="",
                  s3_key="",
+                 json_path="auto",
                  delimiter=",",
                  ignore_headers=1,
                  autocommit=True,
@@ -35,6 +36,7 @@ class StageToRedshiftOperator(BaseOperator):
         self.table = table
         self.s3_bucket = s3_bucket
         self.s3_key = s3_key
+        self.json_path = json_path
         self.delimiter = delimiter
         self.ignore_headers = ignore_headers
         self.autocommit = autocommit
@@ -59,7 +61,7 @@ class StageToRedshiftOperator(BaseOperator):
             s3_path, 
             credentials.access_key, 
             credentials.secret_key, 
-            'auto'
+            self.json_path
         )
         
         postgres_hook.run(formatted_sql, self.autocommit)
