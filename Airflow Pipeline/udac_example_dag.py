@@ -11,7 +11,7 @@ from helpers import SqlQueries
 
 default_args = {
     'owner': 'ranjith',
-    'start_date': datetime(2020, 7, 6)
+    'start_date': datetime(2020, 7, 7)
 }
 
 dag = DAG('data_pipeline_dag',
@@ -44,6 +44,15 @@ stage_songs_to_redshift = StageToRedshiftOperator(
     json_path = "auto"
 )
 
+load_songplays_table = LoadFactOperator(
+    task_id='Load_songplays_fact_table',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_fact_table_sql = SqlQueries.songplay_table_insert,
+    table = 'songplays',
+)
+
+
 #load_user_dimension_table = LoadDimensionOperator(
 #    task_id='Load_user_dim_table',
 #    dag=dag,
@@ -52,8 +61,11 @@ stage_songs_to_redshift = StageToRedshiftOperator(
 #    table = 'users',
 #)
 
-end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-#start_operator >> stage_events_to_redshift >> stage_songs_to_redshift >> end_operator
+#end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-start_operator >> load_user_dimension_table >> end_operator
+start_operator >> stage_events_to_redshift >> load_songplays_table
+
+start_operator >> stage_songs_to_redshift >> load_songplays_table
+
+#start_operator >> load_user_dimension_table >> end_operator

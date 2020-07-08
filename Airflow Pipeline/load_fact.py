@@ -16,8 +16,8 @@ class LoadFactOperator(BaseOperator):
 
         super(LoadFactOperator, self).__init__(*args, **kwargs)
         # Map params here
-        self.redshift_conn_id = redshift_conn_id,
-        self.load_fact_table_sql = load_fact_table_sql,
+        self.redshift_conn_id = redshift_conn_id
+        self.load_fact_table_sql = load_fact_table_sql
         self.table = table
 
     def execute(self, context):
