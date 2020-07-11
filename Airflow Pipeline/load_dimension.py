@@ -16,9 +16,9 @@ class LoadDimensionOperator(BaseOperator):
 
         super(LoadDimensionOperator, self).__init__(*args, **kwargs)
         # Map params here
-        self.redshift_conn_id = redshift_conn_id,
-        self.load_dimension_table_sql = load_dimension_table_sql,
-        self.table = table,
+        self.redshift_conn_id = redshift_conn_id
+        self.load_dimension_table_sql = load_dimension_table_sql
+        self.table = table
 
     def execute(self, context):
         
@@ -30,6 +30,8 @@ class LoadDimensionOperator(BaseOperator):
         
         self.log.info('Inserting the log data into the dimension table: {}'.format(self.table))
         formatted_sql = "INSERT INTO {} {}".format(self.table, self.load_dimension_table_sql)
+        self.log.info(formatted_sql)
+        
         postgres_hook.run(formatted_sql)
         
         pass

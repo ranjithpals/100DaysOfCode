@@ -53,14 +53,37 @@ load_songplays_table = LoadFactOperator(
 )
 
 
-#load_user_dimension_table = LoadDimensionOperator(
-#    task_id='Load_user_dim_table',
-#    dag=dag,
-#    redshift_conn_id = 'redshift',
-#    load_dimension_table_sql = SqlQueries.user_table_insert,
-#    table = 'users',
-#)
+load_user_dimension_table = LoadDimensionOperator(
+    task_id='Load_user_dim_table',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.user_table_insert,
+    table = 'users',
+)
 
+load_song_dimension_table = LoadDimensionOperator(
+    task_id='Load_song_dim_table',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.song_table_insert,
+    table = 'songs',
+)
+
+load_artist_dimension_table = LoadDimensionOperator(
+    task_id='Load_artist_dim_table',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.artist_table_insert,
+    table = 'artists',
+)
+
+load_time_dimension_table = LoadDimensionOperator(
+    task_id='Load_time_dim_table',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    load_dimension_table_sql = SqlQueries.time_table_insert,
+    table = 'time',
+)
 
 #end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
@@ -68,4 +91,7 @@ start_operator >> stage_events_to_redshift >> load_songplays_table
 
 start_operator >> stage_songs_to_redshift >> load_songplays_table
 
-#start_operator >> load_user_dimension_table >> end_operator
+load_songplays_table >> load_user_dimension_table
+load_songplays_table >> load_song_dimension_table
+load_songplays_table >> load_artist_dimension_table
+load_songplays_table >> load_time_dimension_table
