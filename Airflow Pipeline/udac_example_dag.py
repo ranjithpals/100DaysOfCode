@@ -4,6 +4,7 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
                                 LoadDimensionOperator, DataQualityOperator)
+
 from helpers import SqlQueries
 
 # AWS_KEY = os.environ.get('AWS_KEY')
@@ -11,7 +12,7 @@ from helpers import SqlQueries
 
 default_args = {
     'owner': 'ranjith',
-    'start_date': datetime(2020, 7, 7)
+    'start_date': datetime(2020, 7, 14)
 }
 
 dag = DAG('data_pipeline_dag',
@@ -85,13 +86,22 @@ load_time_dimension_table = LoadDimensionOperator(
     table = 'time',
 )
 
-#end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
+perform_data_quality_check = DataQualityOperator(
+    task_id='Data_quality_check',
+    dag=dag,
+    redshift_conn_id = 'redshift',
+    sql_expected = [{'query':'SELECT COUNT(*) FROM SONGPLAYS WHERE PLAYID IS NULL', 'result':0, 'table':'Songplays'},
+                    {'query':'SELECT COUNT(*) FROM USERS WHERE USERID IS NULL', 'result':0, 'table':'Users'}],
+)
+
+end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
 start_operator >> stage_events_to_redshift >> load_songplays_table
-
 start_operator >> stage_songs_to_redshift >> load_songplays_table
 
-load_songplays_table >> load_user_dimension_table
-load_songplays_table >> load_song_dimension_table
-load_songplays_table >> load_artist_dimension_table
-load_songplays_table >> load_time_dimension_table
+load_songplays_table >> load_user_dimension_table >> perform_data_quality_check
+load_songplays_table >> load_song_dimension_table >> perform_data_quality_check
+load_songplays_table >> load_artist_dimension_table >> perform_data_quality_check
+load_songplays_table >> load_time_dimension_table >> perform_data_quality_check
+
+perform_data_quality_check >> end_operator
