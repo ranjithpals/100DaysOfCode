@@ -13,14 +13,19 @@ from helpers import SqlQueries
 default_args = {
     'owner': 'ranjith',
     'start_date': datetime(2018, 11, 1),
-    'end_date'  : datetime(2018, 11, 30)
+    #'end_date'  : datetime(2018, 11, 30)
+    'email': ['learngvrk@gmail.com'],
+    'email_on_failure': True,
+    'email_on_retry': False,
+    'retries': 3,
+    'retry_delay': timedelta(minutes=5)
 }
 
 dag = DAG('data_pipeline_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='@monthly',
-          #catchup=False
+          schedule_interval='@once',
+          #catchup=False,
         )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
